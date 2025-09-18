@@ -44,3 +44,5 @@ my_class = {
 #9. Print the names of all three classmates on the same line.
 print(my_class['student_1']['Name'],my_class['student_2']['Name'],my_class['student_3']['Name'])
 #10. Use the pop function to remove one of the nested dictionaries inside and print the full dictionary from #8.
+my_class.pop('student_3')
+print(my_class)
