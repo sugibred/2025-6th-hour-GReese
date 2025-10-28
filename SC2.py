@@ -35,7 +35,7 @@ print(round(BMI_score, 1))
 if BMI_score < 18.5 :
     print("you are Underweight")
 elif BMI_score >= 18.5 and BMI_score < 24.9 :
-    print("you are normal Weight")
+    print("you are normal")
 elif BMI_score >= 24.9 and BMI_score < 29.9 :
     print("you are Overweight")
 else:
