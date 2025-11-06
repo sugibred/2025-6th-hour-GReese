@@ -18,12 +18,12 @@
 #Code Here:
 
 #get input for weight then on separate line get height
-weight = int(input("please type weight here in (lbs):"))
-height = int(input("please type height here in (in):"))
+weight = float(input("please type weight here in (lbs):"))
+height = float(input("please type height here in (in):"))
 
 
 #code for bmi calculater by weight divided by the height squared and multiply by 703
-BMI_score = (weight/(int(height) ** 2))*703
+BMI_score = (weight/(float(height) ** 2))*703
 print(round(BMI_score, 1))
 
 
