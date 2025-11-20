@@ -49,5 +49,10 @@ mt=1
 #factorial of that number and print the result. A factorial of a number is that number multiplied
 #by every number before it until you reach 1. (For example: 5! is 5 x 4 x 3 x 2 x 1 = 120)
 for o in range(1,asky+1):
-    mt*=o
+    mt *= o
 print(mt)
+import time
+thing='neck hurt'
+for d in range(1000):
+    time.sleep(0.1)
+    print(thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,)
