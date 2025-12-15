@@ -52,7 +52,8 @@ for o in range(1,asky+1):
     mt *= o
 print(mt)
 import time
-thing='neck hurt'
+thing=input("what word do you want to repeat:")
+tim=(float(input("how many seconds per line:")))
 for d in range(1000):
-    time.sleep(0.1)
+    time.sleep(tim)
     print(thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,thing,)

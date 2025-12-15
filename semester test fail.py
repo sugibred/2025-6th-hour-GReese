@@ -75,11 +75,11 @@ enemyDict = {
         "Damage" : random.randint(1,10) + random.randint(1,10) + 4
     },
     "Dragon": {
-        'HP' : 127,
-        'Init': 2,
-        'AC' : 18,
-        'AtkMod': 7,
-        'Damage' : random.randint(1,10) + random.randint(1,10) + random.randint(1,8) + 4
+        "HP" : 127,
+        "Init": 2,
+        "AC" : 18,
+        "AtkMod": 7,
+        "Damage" : random.randint(1,10) + random.randint(1,10) + random.randint(1,8) + 4
     },
 }
 
@@ -88,91 +88,89 @@ enemyDict = {
 #1. Rolling for 'initiative' to see who goes first. This is determined by rolling a
 #20-sided die (d20) and adding their initiative modifier (If the roll is the same,
 #assume the hero goes first).
-player = partyDict["LaeZel"]
-enemy = enemyDict["Dragon"]
+Lmove = False
+LHP = partyDict["LaeZel"]["HP"]
+LINIT= partyDict["LaeZel"]["Init"]
+LAC = partyDict["LaeZel"]["AC"]
+LATKM = partyDict["LaeZel"]["AtkMod"]
+LDMG = partyDict["LaeZel"]["Damage"]
 
-playerinit = random.randint(1,20) + player["Init"]
-enemyinit = random.randint(1,20) + enemy["Init"]
+Dmove = False
+DHP = enemyDict['Dragon']['HP']
+DINIT = enemyDict['Dragon'] ['Init']
+DAC = enemyDict['Dragon'] ['AC']
+DATKM = enemyDict['Dragon'] ['AtkMod']
+DDMG = enemyDict['Dragon'] ['Damage']
 
-if playerinit >= enemyinit:
-    print('player goes first')
-    attacker = player
+initroll1=random.randint(1,20) + partyDict["LaeZel"]["Init"]
+
+initroll2=random.randint(1,20) + enemyDict["Dragon"]["Init"]
+print("LaeZel:",initroll1,"Dragon:",initroll2)
+if initroll1 >= initroll2:
+    Lmove = True
+    Dmove = False
+    print('LaeZel goes first')
 else:
-    print('enemy goes first')
-    attacker = enemy
-
-
+    Dmove = True
+    Lmove = False
+    print('Dragon goes first')
+nat20_1 = False
+nat20_2 = False
 #2. Rolling to attack. This is determined by rolling a 20-sided die (d20) and adding their
 #attack modifier. The attack hits if it matches or is higher than the target's Armor Class (AC).
 #If the d20 rolled to attack is an unmodified ("natural") 20, the attack automatically hits and
 #the character deals double damage. If the d20 rolled to attack is an unmodified ("natural") 1,
 #the attack automatically misses
+while DHP > 0 or LHP > 0:
 
-while player['HP'] > 0 and enemy['HP'] > 0:
+    LNat = random.randint(1,20)
+    LModRoll = LNat + LATKM
+    DNat = random.randint(1, 20)
+    DModRoll = DNat + DATKM
 
-    if attacker == player:
-        roll = random.randint(1,20)
-        print('player rolls',roll)
+    if Lmove == True:
+        if LHP <= 0:
+            print('hero died')
+            break
+    if Dmove == True:
+        if DHP <= 0:
+            print('Dragon die')
+            break
 
-        if roll == 1:
-            print('player miss')
-            attacker = enemy
-        else:
-            hitvalue = roll + player['AtkMod']
+    if Lmove == True:
+        if LNat == 20:
+            DHP -= LDMG * 2
+            print(f'Hero dealt {LDMG*2} damage, Dragon has {DHP} left')
+            Lmove = False
+            Dmove = True
+            if DHP <= 0:
+                break
 
-            if roll == 20:
-                print('nat 20 player hits for double damage')
-                dmg = player['Damage'] * 2
-                enemy['HP'] -= dmg
-                print('player deals', dmg, 'damage')
-                print('enemy HP:', enemy['HP'])
-                attacker = enemy
-            elif hitvalue >= enemy['AC']:
-                dmg = player['Damage']
-                enemy['HP'] -= dmg
-                print('player deals', dmg, 'damage')
-                print('enemy HP:', enemy['HP'])
-                attacker = enemy
-            else:
-                print('player miss')
-                attacker = enemy
+    if Lmove == True:
+        if LNat == 1:
+            print ("Hero missed")
+            Lmove = False
+            Dmove = True
+
+    if Lmove == True:
+        if LModRoll < DAC:
+            print("Hero missed")
+            Lmove = False
+            Dmove = True
+        if LModRoll >= DAC:
+
+            print(f"Hero did")
+            Lmove = False
 
 
-    if attacker == enemy:
-        roll = random.randint(1, 20)
-        print('enemy rolls', roll)
 
-        if roll == 1:
-            print('enemy miss')
-            attacker = player
-        else:
-            hitvalue = roll + enemy['AtkMod']
-
-            if roll == 20:
-                print('nat 20 enemy hits for double damage')
-                dmg = enemy['Damage'] * 2
-                player['HP'] -= dmg
-                print('enemy deals', dmg, 'damage')
-                print('player HP:', player['HP'])
-                attacker = player
-            elif hitvalue >= player['AC']:
-                dmg = enemy['Damage']
-                player['HP'] -= dmg
-                print('enemy deals', dmg, 'damage')
-                print('player HP:', player['HP'])
-                attacker = player
-            else:
-                print('enemy miss')
-                attacker = player
-
-print('player HP:', player['HP'])
-print('enemy HP:', enemy['HP'])
-if player['HP'] <= 0:
-    print('player has died, enemy wins')
-elif enemy['HP'] <= 0:
-    print('enemy has died, player wins')
 #3. If the attack hits, roll damage and subtract it from the target's hit points.
 
 #4. The second in initiative rolls to attack (and rolls damage) afterwards.
 
 #5. Repeat steps 2-5 until one of the characters is dead.
+
+
+
+
+
