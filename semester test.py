@@ -153,8 +153,14 @@ while DHP > 0 or LHP > 0:
             Dmove = True
 
     if Lmove == True:
+        if LModRoll < DAC:
+            print("Hero missed")
+            Lmove = False
+            Dmove = True
+        if LModRoll >= DAC:
 
-
+            print(f"Hero did")
+            Lmove = False
 
 
 
