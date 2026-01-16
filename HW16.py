@@ -24,7 +24,7 @@ def loop(number):
 Hello_World()
 calc(7,4,9)
 animal_list("dog","cat","mouse","Horse","Zebra")
-loop(1)
+loop(6)
 #6. Create a variable x that has the value of 2. Print x
 x=2
 print (x)
