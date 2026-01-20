@@ -14,6 +14,7 @@ def rps():
     rpsbot=random.randint(1,3)
     print(f"you chose {userinp}")
     print(f"david chose {rpsbot}")
+
     if userinp == 3:
         if rpsbot ==1:
             print ("you lose")
