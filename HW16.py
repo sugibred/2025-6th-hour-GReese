@@ -21,10 +21,7 @@ def loop(number):
         print(i)
 
 #5. Call all of the functions created in 1 - 4 with relevant arguments.
-Hello_World()
-calc(7,4,9)
-animal_list("dog","cat","mouse","Horse","Zebra")
-loop(6)
+
 #6. Create a variable x that has the value of 2. Print x
 x=2
 print (x)
